@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SampleMVP</string>
+
+    <string name="login">Login</string>
+    <string name="fetch_users">Fetch Users</string>
+
+    <!--labels-->
+    <string name="no_users_available">No Users Available</string>
+
+    <!--hint-->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Please enter password.</string>
+
+</resources>

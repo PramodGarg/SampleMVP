@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/appPrimaryColor</color>
+    <color name="colorPrimaryDark">@color/appPrimaryColor</color>
+    <color name="colorAccent">@color/appSecondaryColor</color>
+
+    <!-- grayscale -->
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#DBDBDB</color>
+    <color name="gray">#939393</color>
+    <color name="gray_dark">#5F5F5F</color>
+    <color name="black">#000</color>
+    <color name="pure_black">#000</color>
+    <color name="charcoal_grey">#333c40</color>
+    <color name="transparent">#0000</color>
+
+    <color name="button_color_normal">@color/colorPrimary</color>
+    <color name="button_color_pressed">@color/colorAccent</color>
+
+
+    <color name="appPrimaryColor">#2e1a47</color>
+    <color name="appSecondaryColor">#9f8ea0</color>
+    <color name="appLayoutBackgroundColor">#eeeeee</color>
+    <color name="btnBackgroundColor">#9f8ea0</color>
+    <color name="btnBackgroundPressedColor">@color/appPrimaryColor</color>
+
+    <!--Praos panel link color-->
+    <color name="praosLinkColor">#4079f3</color>
+
+    <!--text colors-->
+    <color name="lightTextColor">@color/btnBackgroundColor</color>
+    <color name="textColor">@color/appPrimaryColor</color>
+
+    <color name="blackColor">#000000</color>
+    <color name="whiteColor">#FFFFFF</color>
+    <color name="greyColor">#999999</color>
+
+    <!--Buttons BackgroundColor-->
+    <color name="fbBtnColor">#3a5898</color>
+    <color name="linkedInBtnColor">#027bb6</color>
+    <color name="btn_primary_color">@color/appPrimaryColor</color>
+    <color name="btn_secondary_color">@color/colorAccent</color>
+
+    <!--circular bar color-->
+    <color name="circularBarColor">#72c800</color>
+    <!--navigationBar-->
+    <color name="navBarColor">@color/appSecondaryColor</color>
+
+    <!--custom_row_find_jobs-->
+    <color name="custom_row_find_jobs_header_color">@color/appPrimaryColor</color>
+    <!--custom_row_calendar_text-->
+    <color name="custom_row_calendar_text_line_color">@color/lightTextColor</color>
+    <color name="custom_row_calendar_layout_fill_color">#84709C</color>
+
+    <!--layout_delegate_a_job-->
+    <color name="color_select_user_dept_btn">#f8fafc</color>
+
+    <color name="color_transculent">#33000000</color>
+    <!--chat colors-->
+    <color name="text_color_sender">@color/whiteColor</color>
+    <color name="text_color_receiver">@color/greyColor</color>
+    <color name="text_color_time">@color/greyColor</color>
+
+    <!--Poly line color-->
+    <color name="polylinecolor">#44236b</color>
+
+    <!--filter label color-->
+    <color name="filterLabelcolor">#f4f3f6</color>
+    <color name="filterDividercolor">#dbdbdb</color>
+</resources>
