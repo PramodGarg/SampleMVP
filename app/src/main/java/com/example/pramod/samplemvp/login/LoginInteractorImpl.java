@@ -3,7 +3,14 @@ package com.example.pramod.samplemvp.login;
 
 import android.os.Handler;
 
+import javax.inject.Inject;
+
 public class LoginInteractorImpl implements LoginInteractor {
+
+    @Inject
+    public LoginInteractorImpl() {
+    }
+
     /**
      * mocks server calls
      *

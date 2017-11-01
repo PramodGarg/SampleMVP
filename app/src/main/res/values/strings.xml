@@ -10,5 +10,9 @@
     <!--hint-->
     <string name="hint_email">Email</string>
     <string name="hint_password">Please enter password.</string>
+    <string name="invaid_email">Please enter valid Email</string>
+    <string name="invalid_password">Please enter valid Password</string>
+    <string name="invalid_email_password">Please enter valid Email/Password combination</string>
+
 
 </resources>

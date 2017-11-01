@@ -1,5 +1,7 @@
 package com.example.pramod.samplemvp.login;
 
+import javax.inject.Inject;
+
 /**
  * Created by pramod on 11/10/17.
  */
@@ -9,9 +11,10 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.Pr
     private LoginContract.View mView;
     private LoginInteractor mMainInteractor;
 
-    public LoginPresenter(LoginContract.View view) {
+    @Inject
+    public LoginPresenter(LoginContract.View view, LoginInteractorImpl loginInteractor) {
         mView = view;
-        this.mMainInteractor = new LoginInteractorImpl();
+        mMainInteractor = loginInteractor;
     }
 
     @Override

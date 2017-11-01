@@ -1,26 +1,29 @@
 package com.example.pramod.samplemvp.main;
 
-import com.example.pramod.samplemvp.login.data.Post;
+import com.example.pramod.samplemvp.main.data.Post;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 /**
  * Created by pramod on 12/10/17.
  */
 
 public class MainPresenter implements MainContract.Presenter, MainContract.Presenter.OnUserFetchCallback {
-    private MainInteractor mainInteractor;
+    private MainInteractorImpl mMainInteractor;
     private MainContract.View mView;
 
-    public MainPresenter(MainContract.View view) {
-        mainInteractor = new MainInteractorImpl();
+    @Inject
+    public MainPresenter(final MainInteractorImpl mainInteractor, final MainContract.View view) {
+        mMainInteractor = mainInteractor;
         mView = view;
     }
 
     @Override
     public void fetchUsers() {
         mView.showProgress();
-        mainInteractor.fetchUsers(this);
+        mMainInteractor.fetchUsers(this);
     }
 
     @Override

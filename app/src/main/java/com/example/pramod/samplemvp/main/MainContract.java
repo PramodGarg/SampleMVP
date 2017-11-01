@@ -2,7 +2,7 @@ package com.example.pramod.samplemvp.main;
 
 import com.example.pramod.samplemvp.base.BasePresenter;
 import com.example.pramod.samplemvp.base.BaseView;
-import com.example.pramod.samplemvp.login.data.Post;
+import com.example.pramod.samplemvp.main.data.Post;
 
 import java.util.ArrayList;
 

@@ -11,14 +11,19 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.pramod.samplemvp.R;
+import com.example.pramod.samplemvp.login.di.DaggerLoginComponent;
+import com.example.pramod.samplemvp.login.di.LoginModule;
 import com.example.pramod.samplemvp.main.MainActivity;
+
+import javax.inject.Inject;
 
 /**
  * Created by pramod on 11/10/17.
  */
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View, View.OnClickListener {
-    private LoginContract.Presenter mPresenter;
+    @Inject
+    LoginPresenter loginPresenter;
 
     private ProgressBar mProgressBar;
     private Button mBtLogin;
@@ -29,14 +34,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        DaggerLoginComponent.builder().loginModule(new LoginModule(this)).build().inject(this);
+
         init();
         setListeners();
 
     }
 
     private void init() {
-        mPresenter = new LoginPresenter(this);
-
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mBtLogin = (Button) findViewById(R.id.btLogin);
         mEtEmail = (EditText) findViewById(R.id.etEmail);
@@ -51,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btLogin:
-                mPresenter.login(mEtEmail.getText().toString().trim(),
+                loginPresenter.login(mEtEmail.getText().toString().trim(),
                         mEtPassword.getText().toString().trim());
                 break;
             default:
@@ -61,17 +66,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showEmailError() {
-        Toast.makeText(this, "Please enter valid Email", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.invaid_email, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showPasswordError() {
-        Toast.makeText(this, "Please enter valid Password", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.invalid_password, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showInvalidCombinationError() {
-        Toast.makeText(this, "Please enter valid Email/Password combination", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.invalid_email_password, Toast.LENGTH_SHORT).show();
     }
 
     @Override

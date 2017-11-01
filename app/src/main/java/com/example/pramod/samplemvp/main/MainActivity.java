@@ -11,20 +11,29 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pramod.samplemvp.MyApplication;
 import com.example.pramod.samplemvp.R;
-import com.example.pramod.samplemvp.login.data.Post;
-import com.example.pramod.samplemvp.login.PostAdapter;
-
-import org.w3c.dom.Text;
+import com.example.pramod.samplemvp.main.data.Post;
+import com.example.pramod.samplemvp.main.di.DaggerMainComponent;
+import com.example.pramod.samplemvp.main.di.MainModule;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 /**
  * Created by pramod on 12/10/17.
  */
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, View.OnClickListener {
-    private MainContract.Presenter mPresenter;
+    @Inject
+    MainPresenter mPresenter;
+
+    @Inject
+    PostAdapterFactory mPostAdapterFactory;
+
+    @Inject
+    LinearLayoutManager mLinearLayoutManager;
 
     private Button mBtFetchUsers;
     private ProgressBar mProgressBar;
@@ -35,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPresenter = new MainPresenter(this);
+
+        DaggerMainComponent.builder().retrofitComponent(((MyApplication) getApplication()).getRetrofitComponent())
+                .mainModule(new MainModule(this)).build().inject(this);
+
         init();
         setListeners();
     }
@@ -47,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mTvNoUsers = (TextView) findViewById(R.id.tvNoUsers);
 
-        mRvUsers.setLayoutManager(new LinearLayoutManager(this));
+        mRvUsers.setLayoutManager(mLinearLayoutManager);
     }
 
     private void setListeners() {
@@ -88,8 +100,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void showUsers(ArrayList<Post> postList) {
-        PostAdapter postAdapter = new PostAdapter(postList);
-        mRvUsers.setAdapter(postAdapter);
+        mRvUsers.setAdapter(mPostAdapterFactory.createPostAdapter(postList));
 
         mTvNoUsers.setVisibility(View.GONE);
         mRvUsers.setVisibility(View.VISIBLE);
