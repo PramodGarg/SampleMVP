@@ -6,5 +6,5 @@ package com.example.pramod.samplemvp.main;
 
 public interface MainInteractor {
 
-    void fetchUsers(MainContract.Presenter.OnUserFetchCallback callback);
+    void fetchPosts(MainContract.Presenter.OnPostFetchCallback callback);
 }

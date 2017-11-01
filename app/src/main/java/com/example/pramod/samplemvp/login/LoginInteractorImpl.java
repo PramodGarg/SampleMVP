@@ -16,7 +16,7 @@ public class LoginInteractorImpl implements LoginInteractor {
      *
      * @param email           : mail
      * @param password        : password
-     * @param onLoginCallBack :success/fail callback
+     * @param onLoginCallBack :onSuccess/fail callback
      */
     @Override
     public void loginApi(final String email, final String password, final LoginContract.Presenter.OnLoginCallBack onLoginCallBack) {
@@ -32,9 +32,9 @@ public class LoginInteractorImpl implements LoginInteractor {
                     return;
                 }
                 if (email.equals("email@gmail.com") && password.equals("password")) {
-                    onLoginCallBack.success();
+                    onLoginCallBack.onSuccess();
                 } else {
-                    onLoginCallBack.failure();
+                    onLoginCallBack.onFailure();
                 }
 
             }

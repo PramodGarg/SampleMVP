@@ -19,7 +19,7 @@ import com.example.pramod.samplemvp.main.data.Post;
 import com.example.pramod.samplemvp.main.di.DaggerMainComponent;
 import com.example.pramod.samplemvp.main.di.MainModule;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DaggerMainComponent.builder().retrofitComponent(((MyApplication) getApplication()).getRetrofitComponent())
+        DaggerMainComponent.builder().appComponent(((MyApplication) getApplication()).getAppComponent())
                 .mainModule(new MainModule(this)).build().inject(this);
 
         init();
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void showUsers(ArrayList<Post> postList) {
+    public void showUsers(List<Post> postList) {
         mRvUsers.setAdapter(mPostAdapterFactory.createPostAdapter(postList));
 
         mTvNoUsers.setVisibility(View.GONE);

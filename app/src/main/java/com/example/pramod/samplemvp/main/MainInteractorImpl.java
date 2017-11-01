@@ -1,17 +1,15 @@
 package com.example.pramod.samplemvp.main;
 
-import android.support.annotation.NonNull;
-
 import com.example.pramod.samplemvp.main.data.Post;
 import com.example.pramod.samplemvp.retrofit.ApiInterface;
+import com.example.pramod.samplemvp.util.SchedulerProvider;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by pramod on 12/10/17.
@@ -21,24 +19,40 @@ public class MainInteractorImpl implements MainInteractor {
 
 
     private ApiInterface mApiInterface;
+    private SchedulerProvider mSchedulerProvider;
+    private List<Post> postList;
 
     @Inject
-    public MainInteractorImpl(final ApiInterface apiInterface) {
+    public MainInteractorImpl(final ApiInterface apiInterface, SchedulerProvider schedulerProvider) {
+        mSchedulerProvider = schedulerProvider;
         mApiInterface = apiInterface;
     }
 
     @Override
-    public void fetchUsers(final MainContract.Presenter.OnUserFetchCallback callback) {
-        mApiInterface.fetchPosts().enqueue(new Callback<ArrayList<Post>>() {
+    public void fetchPosts(final MainContract.Presenter.OnPostFetchCallback callback) {
+        Observer<List<Post>> postListObserver = new Observer<List<Post>>() {
             @Override
-            public void onResponse(@NonNull Call<ArrayList<Post>> call, @NonNull Response<ArrayList<Post>> response) {
-                callback.onSuccess(response.body());
+            public void onSubscribe(final Disposable d) {
             }
 
             @Override
-            public void onFailure(@NonNull Call<ArrayList<Post>> call, @NonNull Throwable t) {
-                callback.onFailure(t.getMessage());
+            public void onNext(final List<Post> post) {
+                postList = post;
             }
-        });
+
+            @Override
+            public void onError(final Throwable e) {
+                callback.onFailure(e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                callback.onSuccess(postList);
+            }
+        };
+
+        mApiInterface.fetchPosts().subscribeOn(mSchedulerProvider.backgroundThread())
+                .observeOn(mSchedulerProvider.mainThread())
+                .subscribe(postListObserver);
     }
 }

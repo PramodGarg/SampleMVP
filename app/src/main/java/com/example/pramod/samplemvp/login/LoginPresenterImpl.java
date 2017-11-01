@@ -6,13 +6,13 @@ import javax.inject.Inject;
  * Created by pramod on 11/10/17.
  */
 
-public class LoginPresenter implements LoginContract.Presenter, LoginContract.Presenter.OnLoginCallBack {
+public class LoginPresenterImpl implements LoginContract.Presenter, LoginContract.Presenter.OnLoginCallBack {
 
     private LoginContract.View mView;
     private LoginInteractor mMainInteractor;
 
     @Inject
-    public LoginPresenter(LoginContract.View view, LoginInteractorImpl loginInteractor) {
+    public LoginPresenterImpl(LoginContract.View view, LoginInteractorImpl loginInteractor) {
         mView = view;
         mMainInteractor = loginInteractor;
     }
@@ -38,14 +38,14 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.Pr
     }
 
     @Override
-    public void success() {
+    public void onSuccess() {
 
         mView.hideProgress();
         mView.navigateToMainActivity();
     }
 
     @Override
-    public void failure() {
+    public void onFailure() {
 
         mView.hideProgress();
         mView.showInvalidCombinationError();

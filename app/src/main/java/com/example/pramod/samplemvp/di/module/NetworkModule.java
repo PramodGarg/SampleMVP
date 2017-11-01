@@ -3,6 +3,7 @@ package com.example.pramod.samplemvp.di.module;
 import com.example.pramod.samplemvp.BuildConfig;
 import com.example.pramod.samplemvp.retrofit.ApiInterface;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -10,6 +11,7 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -17,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 @Module
-public class RetrofitModule {
+public class NetworkModule {
     @Singleton
     @Provides
     ApiInterface providesApiInterface(Retrofit retrofit) {
@@ -29,6 +31,7 @@ public class RetrofitModule {
     Retrofit providesRetrofit(OkHttpClient.Builder builder) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(builder.build())
                 //.client(secureConnection().build())

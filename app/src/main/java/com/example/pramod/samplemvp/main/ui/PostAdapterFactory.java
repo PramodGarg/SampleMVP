@@ -2,7 +2,7 @@ package com.example.pramod.samplemvp.main.ui;
 
 import com.example.pramod.samplemvp.main.data.Post;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,7 +21,7 @@ public class PostAdapterFactory {
         this.mViewHolderFactory = viewHolderFactory;
     }
 
-    PostAdapter createPostAdapter(ArrayList<Post> postList) {
+    PostAdapter createPostAdapter(List<Post> postList) {
         return new PostAdapter(mainActivity, postList, mViewHolderFactory);
     }
 }

@@ -4,7 +4,7 @@ import com.example.pramod.samplemvp.main.data.Post;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 /**
@@ -15,6 +15,6 @@ public interface ApiInterface {
     String GET_POSTS = "posts";
 
     @GET(GET_POSTS)
-    Call<ArrayList<Post>> fetchPosts();
+    Observable<ArrayList<Post>> fetchPosts();
 
 }

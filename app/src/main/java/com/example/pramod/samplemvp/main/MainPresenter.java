@@ -2,7 +2,7 @@ package com.example.pramod.samplemvp.main;
 
 import com.example.pramod.samplemvp.main.data.Post;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -10,7 +10,7 @@ import javax.inject.Inject;
  * Created by pramod on 12/10/17.
  */
 
-public class MainPresenter implements MainContract.Presenter, MainContract.Presenter.OnUserFetchCallback {
+public class MainPresenter implements MainContract.Presenter, MainContract.Presenter.OnPostFetchCallback {
     private MainInteractorImpl mMainInteractor;
     private MainContract.View mView;
 
@@ -23,11 +23,11 @@ public class MainPresenter implements MainContract.Presenter, MainContract.Prese
     @Override
     public void fetchUsers() {
         mView.showProgress();
-        mMainInteractor.fetchUsers(this);
+        mMainInteractor.fetchPosts(this);
     }
 
     @Override
-    public void onSuccess(ArrayList<Post> postList) {
+    public void onSuccess(List<Post> postList) {
         mView.hideProgress();
         mView.showUsers(postList);
     }

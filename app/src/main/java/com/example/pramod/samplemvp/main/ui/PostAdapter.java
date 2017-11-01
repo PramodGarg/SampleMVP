@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.pramod.samplemvp.R;
 import com.example.pramod.samplemvp.main.data.Post;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -22,10 +22,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostVH> {
 
     private MainActivity mActivity;
     private PostViewHolderFactory mPostViewHolderFactory;
-    private ArrayList<Post> mPostList;
+    private List<Post> mPostList;
 
     @Inject
-    public PostAdapter(MainActivity activity, ArrayList<Post> mPostList, PostViewHolderFactory postViewHolderFactory) {
+    public PostAdapter(MainActivity activity, List<Post> mPostList, PostViewHolderFactory postViewHolderFactory) {
         this.mPostList = mPostList;
         mActivity = activity;
         mPostViewHolderFactory = postViewHolderFactory;

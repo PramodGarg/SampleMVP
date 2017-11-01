@@ -1,7 +1,7 @@
 package com.example.pramod.samplemvp.main.di;
 
 import com.example.pramod.samplemvp.di.PerActivity;
-import com.example.pramod.samplemvp.di.component.RetrofitComponent;
+import com.example.pramod.samplemvp.di.component.AppComponent;
 import com.example.pramod.samplemvp.main.ui.MainActivity;
 
 import dagger.Component;
@@ -11,7 +11,7 @@ import dagger.Component;
  */
 
 @PerActivity
-@Component(modules = MainModule.class, dependencies = RetrofitComponent.class)
+@Component(modules = MainModule.class, dependencies = {AppComponent.class})
 public interface MainComponent {
     void inject(MainActivity mainActivity);
 }

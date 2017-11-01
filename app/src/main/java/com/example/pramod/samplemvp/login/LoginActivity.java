@@ -23,7 +23,7 @@ import javax.inject.Inject;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View, View.OnClickListener {
     @Inject
-    LoginPresenter loginPresenter;
+    LoginPresenterImpl mLoginPresenterImpl;
 
     private ProgressBar mProgressBar;
     private Button mBtLogin;
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btLogin:
-                loginPresenter.login(mEtEmail.getText().toString().trim(),
+                mLoginPresenterImpl.login(mEtEmail.getText().toString().trim(),
                         mEtPassword.getText().toString().trim());
                 break;
             default:

@@ -2,9 +2,9 @@ package com.example.pramod.samplemvp;
 
 import android.app.Application;
 
-import com.example.pramod.samplemvp.di.component.DaggerRetrofitComponent;
-import com.example.pramod.samplemvp.di.component.RetrofitComponent;
-import com.example.pramod.samplemvp.di.module.RetrofitModule;
+import com.example.pramod.samplemvp.di.component.AppComponent;
+import com.example.pramod.samplemvp.di.component.DaggerAppComponent;
+import com.example.pramod.samplemvp.di.module.AppModule;
 
 /**
  * Created by pramod on 12/10/17.
@@ -13,16 +13,19 @@ import com.example.pramod.samplemvp.di.module.RetrofitModule;
 public class MyApplication extends Application {
 
 
-    private RetrofitComponent mRetrofitComponent;
+    private AppComponent mAppComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mRetrofitComponent = DaggerRetrofitComponent.builder()
-                .retrofitModule(new RetrofitModule()).build();
+
+        mAppComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
     }
 
-    public RetrofitComponent getRetrofitComponent() {
-        return mRetrofitComponent;
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 }
