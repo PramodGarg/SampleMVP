@@ -9,16 +9,16 @@ import android.widget.TextView;
 import com.example.pramod.samplemvp.R;
 import com.example.pramod.samplemvp.login.data.Post;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pramod on 12/10/17.
  */
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostVH> {
-    private ArrayList<Post> mPostList;
+    private List<Post> mPostList;
 
-    public PostAdapter(ArrayList<Post> mPostList) {
+    public PostAdapter(List<Post> mPostList) {
         this.mPostList = mPostList;
     }
 

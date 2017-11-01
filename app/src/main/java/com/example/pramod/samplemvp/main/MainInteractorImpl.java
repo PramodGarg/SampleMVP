@@ -3,7 +3,7 @@ package com.example.pramod.samplemvp.main;
 import android.support.annotation.NonNull;
 
 import com.example.pramod.samplemvp.login.data.Post;
-import com.example.pramod.samplemvp.retrofit.RestClient;
+import com.example.pramod.samplemvp.retrofit.ApiInterface;
 
 import java.util.ArrayList;
 
@@ -16,9 +16,15 @@ import retrofit2.Response;
  */
 
 public class MainInteractorImpl implements MainInteractor {
+    private ApiInterface mApiInterface;
+
+    MainInteractorImpl(final ApiInterface apiInterface) {
+        mApiInterface = apiInterface;
+    }
+
     @Override
-    public void fetchUsers(final MainContract.Presenter.OnUserFetchCallback callback) {
-        RestClient.getApiInterface().fetchPosts().enqueue(new Callback<ArrayList<Post>>() {
+    public void fetchPosts(final MainContract.Presenter.OnPostFetchCallback callback) {
+        mApiInterface.fetchPosts().enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, @NonNull Response<ArrayList<Post>> response) {
                 callback.onSuccess(response.body());

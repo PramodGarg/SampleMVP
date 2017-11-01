@@ -1,30 +1,31 @@
 package com.example.pramod.samplemvp.main;
 
 import com.example.pramod.samplemvp.login.data.Post;
+import com.example.pramod.samplemvp.retrofit.RestClient;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pramod on 12/10/17.
  */
 
-public class MainPresenter implements MainContract.Presenter, MainContract.Presenter.OnUserFetchCallback {
+public class MainPresenterImpl implements MainContract.Presenter, MainContract.Presenter.OnPostFetchCallback {
     private MainInteractor mainInteractor;
     private MainContract.View mView;
 
-    public MainPresenter(MainContract.View view) {
-        mainInteractor = new MainInteractorImpl();
+    public MainPresenterImpl(MainContract.View view) {
+        mainInteractor = new MainInteractorImpl(RestClient.getApiInterface());
         mView = view;
     }
 
     @Override
     public void fetchUsers() {
         mView.showProgress();
-        mainInteractor.fetchUsers(this);
+        mainInteractor.fetchPosts(this);
     }
 
     @Override
-    public void onSuccess(ArrayList<Post> postList) {
+    public void onSuccess(List<Post> postList) {
         mView.hideProgress();
         mView.showUsers(postList);
     }

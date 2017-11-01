@@ -12,12 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pramod.samplemvp.R;
-import com.example.pramod.samplemvp.login.data.Post;
 import com.example.pramod.samplemvp.login.PostAdapter;
+import com.example.pramod.samplemvp.login.data.Post;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pramod on 12/10/17.
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPresenter = new MainPresenter(this);
+        mPresenter = new MainPresenterImpl(this);
         init();
         setListeners();
     }
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void showUsers(ArrayList<Post> postList) {
+    public void showUsers(List<Post> postList) {
         PostAdapter postAdapter = new PostAdapter(postList);
         mRvUsers.setAdapter(postAdapter);
 

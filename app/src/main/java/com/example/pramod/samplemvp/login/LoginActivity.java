@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void init() {
-        mPresenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenterImpl(this);
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mBtLogin = (Button) findViewById(R.id.btLogin);

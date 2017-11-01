@@ -28,9 +28,9 @@ public interface LoginContract {
 
             void onPasswordError();
 
-            void success();
+            void onSuccess();
 
-            void failure();
+            void onFailure();
         }
     }
 }
