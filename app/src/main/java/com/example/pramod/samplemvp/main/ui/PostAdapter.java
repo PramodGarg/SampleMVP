@@ -1,4 +1,4 @@
-package com.example.pramod.samplemvp.main;
+package com.example.pramod.samplemvp.main.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,23 +11,37 @@ import com.example.pramod.samplemvp.main.data.Post;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 /**
  * Created by pramod on 12/10/17.
  */
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostVH> {
-    private ArrayList<Post> mPostList;
-    private MainContract.View mView;
 
-    public PostAdapter(MainContract.View view, ArrayList<Post> mPostList) {
+
+    private MainActivity mActivity;
+    private PostViewHolderFactory mPostViewHolderFactory;
+    private ArrayList<Post> mPostList;
+
+    @Inject
+    public PostAdapter(MainActivity activity, ArrayList<Post> mPostList, PostViewHolderFactory postViewHolderFactory) {
         this.mPostList = mPostList;
-        mView = view;
+        mActivity = activity;
+        mPostViewHolderFactory = postViewHolderFactory;
+
     }
 
     @Override
     public PostVH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
-        return new PostVH(view);
+        View view = null;
+        if (viewType % 2 == 0) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
+
+        } else if (viewType % 2 != 0) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_even, parent, false);
+        }
+        return mPostViewHolderFactory.createViewHolder(view);
     }
 
     @Override
@@ -47,7 +61,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostVH> {
         return mPostList.size();
     }
 
-    class PostVH extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    public static class PostVH extends RecyclerView.ViewHolder {
         private TextView mTvId, mTvUserId, mTvTitle, mTvBody;
 
         public PostVH(View itemView) {

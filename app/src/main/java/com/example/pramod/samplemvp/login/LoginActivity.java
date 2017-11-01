@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.pramod.samplemvp.R;
 import com.example.pramod.samplemvp.login.di.DaggerLoginComponent;
 import com.example.pramod.samplemvp.login.di.LoginModule;
-import com.example.pramod.samplemvp.main.MainActivity;
+import com.example.pramod.samplemvp.main.ui.MainActivity;
 
 import javax.inject.Inject;
 

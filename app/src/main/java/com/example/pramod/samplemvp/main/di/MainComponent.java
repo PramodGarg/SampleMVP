@@ -2,7 +2,7 @@ package com.example.pramod.samplemvp.main.di;
 
 import com.example.pramod.samplemvp.di.PerActivity;
 import com.example.pramod.samplemvp.di.component.RetrofitComponent;
-import com.example.pramod.samplemvp.main.MainActivity;
+import com.example.pramod.samplemvp.main.ui.MainActivity;
 
 import dagger.Component;
 

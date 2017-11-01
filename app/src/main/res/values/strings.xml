@@ -2,7 +2,7 @@
     <string name="app_name">SampleMVP</string>
 
     <string name="login">Login</string>
-    <string name="fetch_users">Fetch Users</string>
+    <string name="fetch_posts">Fetch Posts</string>
 
     <!--labels-->
     <string name="no_users_available">No Users Available</string>

@@ -1,4 +1,4 @@
-package com.example.pramod.samplemvp.main;
+package com.example.pramod.samplemvp.main.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.pramod.samplemvp.MyApplication;
 import com.example.pramod.samplemvp.R;
+import com.example.pramod.samplemvp.main.MainContract;
+import com.example.pramod.samplemvp.main.MainPresenter;
 import com.example.pramod.samplemvp.main.data.Post;
 import com.example.pramod.samplemvp.main.di.DaggerMainComponent;
 import com.example.pramod.samplemvp.main.di.MainModule;
