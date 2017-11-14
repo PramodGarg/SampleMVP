@@ -12,8 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pramod.samplemvp.R;
-import com.example.pramod.samplemvp.login.PostAdapter;
-import com.example.pramod.samplemvp.login.data.Post;
+import com.example.pramod.samplemvp.main.adapter.PostAdapter;
+import com.example.pramod.samplemvp.main.data.Post;
 
 import java.util.List;
 

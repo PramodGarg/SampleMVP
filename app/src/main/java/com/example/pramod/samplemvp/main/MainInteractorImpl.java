@@ -2,7 +2,7 @@ package com.example.pramod.samplemvp.main;
 
 import android.support.annotation.NonNull;
 
-import com.example.pramod.samplemvp.login.data.Post;
+import com.example.pramod.samplemvp.main.data.Post;
 import com.example.pramod.samplemvp.retrofit.ApiInterface;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.pramod.samplemvp.login.data;
+package com.example.pramod.samplemvp.main.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

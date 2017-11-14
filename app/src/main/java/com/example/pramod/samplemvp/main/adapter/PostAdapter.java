@@ -1,4 +1,4 @@
-package com.example.pramod.samplemvp.login;
+package com.example.pramod.samplemvp.main.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.pramod.samplemvp.R;
-import com.example.pramod.samplemvp.login.data.Post;
+import com.example.pramod.samplemvp.main.data.Post;
 
 import java.util.List;
 
