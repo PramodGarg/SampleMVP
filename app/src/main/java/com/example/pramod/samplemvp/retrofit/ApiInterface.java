@@ -1,6 +1,6 @@
 package com.example.pramod.samplemvp.retrofit;
 
-import com.example.pramod.samplemvp.main.data.Post;
+import com.example.pramod.samplemvp.data.model.Post;
 
 import java.util.ArrayList;
 

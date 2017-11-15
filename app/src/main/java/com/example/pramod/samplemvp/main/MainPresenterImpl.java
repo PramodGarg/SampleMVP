@@ -1,6 +1,7 @@
 package com.example.pramod.samplemvp.main;
 
-import com.example.pramod.samplemvp.main.data.Post;
+import com.example.pramod.samplemvp.MyApplication;
+import com.example.pramod.samplemvp.data.model.Post;
 import com.example.pramod.samplemvp.retrofit.RestClient;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class MainPresenterImpl implements MainContract.Presenter, MainContract.P
     private MainInteractor mainInteractor;
     private MainContract.View mView;
 
-    public MainPresenterImpl(MainContract.View view) {
-        mainInteractor = new MainInteractorImpl(RestClient.getApiInterface());
+    MainPresenterImpl(MainContract.View view) {
+        mainInteractor = new MainInteractorImpl(RestClient.getApiInterface(), MyApplication.getPostSource());
         mView = view;
     }
 

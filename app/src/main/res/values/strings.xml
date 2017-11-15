@@ -2,13 +2,18 @@
     <string name="app_name">SampleMVP</string>
 
     <string name="login">Login</string>
-    <string name="fetch_users">Fetch Users</string>
+    <string name="fetch_posts">Fetch Posts</string>
 
     <!--labels-->
-    <string name="no_users_available">No Users Available</string>
+    <string name="no_posts_available">No Posts Available</string>
 
     <!--hint-->
     <string name="hint_email">Email</string>
     <string name="hint_password">Please enter password.</string>
+
+    <!--error-->
+    <string name="error_invalid_email">Please enter valid email</string>
+    <string name="error_invalid_password">Please enter valid password</string>
+    <string name="error_invalid_email_password_combination">Please enter valid email/password combination</string>
 
 </resources>

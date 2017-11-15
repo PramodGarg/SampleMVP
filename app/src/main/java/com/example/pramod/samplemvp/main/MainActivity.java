@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.pramod.samplemvp.R;
 import com.example.pramod.samplemvp.main.adapter.PostAdapter;
-import com.example.pramod.samplemvp.main.data.Post;
+import com.example.pramod.samplemvp.data.model.Post;
 
 import java.util.List;
 

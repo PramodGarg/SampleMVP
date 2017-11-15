@@ -2,10 +2,12 @@ package com.example.pramod.samplemvp.main;
 
 import android.support.annotation.NonNull;
 
-import com.example.pramod.samplemvp.main.data.Post;
+import com.example.pramod.samplemvp.data.model.Post;
+import com.example.pramod.samplemvp.data.source.PostSource;
 import com.example.pramod.samplemvp.retrofit.ApiInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,9 +19,11 @@ import retrofit2.Response;
 
 public class MainInteractorImpl implements MainInteractor {
     private ApiInterface mApiInterface;
+    private PostSource mPostSource;
 
-    MainInteractorImpl(final ApiInterface apiInterface) {
+    MainInteractorImpl(final ApiInterface apiInterface, final PostSource postSource) {
         mApiInterface = apiInterface;
+        mPostSource = postSource;
     }
 
     @Override
@@ -27,7 +31,11 @@ public class MainInteractorImpl implements MainInteractor {
         mApiInterface.fetchPosts().enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, @NonNull Response<ArrayList<Post>> response) {
-                callback.onSuccess(response.body());
+                List<Post> postList = response.body();
+                if (postList != null) {
+                    mPostSource.savePostList(postList);
+                }
+                callback.onSuccess(postList);
             }
 
             @Override

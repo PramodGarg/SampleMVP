@@ -61,17 +61,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showEmailError() {
-        Toast.makeText(this, "Please enter valid Email", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.error_invalid_email, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showPasswordError() {
-        Toast.makeText(this, "Please enter valid Password", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.error_invalid_password, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showInvalidCombinationError() {
-        Toast.makeText(this, "Please enter valid Email/Password combination", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.error_invalid_email_password_combination, Toast.LENGTH_SHORT).show();
     }
 
     @Override

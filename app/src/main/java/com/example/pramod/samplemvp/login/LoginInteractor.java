@@ -5,5 +5,7 @@ package com.example.pramod.samplemvp.login;
  */
 
 public interface LoginInteractor {
+
     void loginApi(String email, String password, LoginContract.Presenter.OnLoginCallBack onLoginCallBack);
+
 }

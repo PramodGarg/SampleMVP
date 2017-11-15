@@ -1,6 +1,7 @@
 package com.example.pramod.samplemvp.main;
 
-import com.example.pramod.samplemvp.main.data.Post;
+import com.example.pramod.samplemvp.MyApplication;
+import com.example.pramod.samplemvp.data.model.Post;
 import com.example.pramod.samplemvp.retrofit.ApiInterface;
 import com.example.pramod.samplemvp.util.FileUtils;
 import com.example.pramod.samplemvp.util.SynchronousExecutorService;
@@ -51,7 +52,7 @@ public class MainInteractorTest {
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader()
                         .getResourceAsStream("login_200.json")))
         );
-        MainInteractor mainInteractor = new MainInteractorImpl(mApiInterface);
+        MainInteractor mainInteractor = new MainInteractorImpl(mApiInterface, MyApplication.getPostSource());
         mainInteractor.fetchPosts(mOnPostFetchCallback);
         Mockito.verify(mOnPostFetchCallback, Mockito.times(1)).onSuccess(Mockito.<Post>anyList());
         Mockito.verify(mOnPostFetchCallback, Mockito.never()).onFailure(Mockito.anyString());
@@ -61,7 +62,7 @@ public class MainInteractorTest {
     public void fetchPosts_apiFailure_callsOnFailure() throws Exception {
         mMockWebServer.enqueue(new MockResponse()
         );
-        MainInteractor mainInteractor = new MainInteractorImpl(mApiInterface);
+        MainInteractor mainInteractor = new MainInteractorImpl(mApiInterface, MyApplication.getPostSource());
         mainInteractor.fetchPosts(mOnPostFetchCallback);
         Mockito.verify(mOnPostFetchCallback, Mockito.times(1)).onFailure(Mockito.anyString());
         Mockito.verify(mOnPostFetchCallback, Mockito.never()).onSuccess(Mockito.<Post>anyList());

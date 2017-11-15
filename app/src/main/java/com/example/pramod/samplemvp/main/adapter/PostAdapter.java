@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.pramod.samplemvp.R;
-import com.example.pramod.samplemvp.main.data.Post;
+import com.example.pramod.samplemvp.data.model.Post;
 
 import java.util.List;
 

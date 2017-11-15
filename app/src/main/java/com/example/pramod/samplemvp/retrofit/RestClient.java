@@ -13,12 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Dated: 27-09-2016.
  */
 public final class RestClient {
-    private static final Integer BKS_KEYSTORE_RAW_FILE_ID = 0;
-    // Integer BKS_KEYSTORE_RAW_FILE_ID = R.raw.keystorebks;
-    private static final Integer SSL_KEY_PASSWORD_STRING_ID = 0;
     private static Retrofit retrofit = null;
-    private static Retrofit retrofitGoogle = null;
-    //Integer SSL_KEY_PASSWORD_STRING_ID = R.string.sslKeyPassword;
 
     /**
      * Empty Constructor
@@ -42,23 +37,6 @@ public final class RestClient {
                     .build();
         }
         return retrofit.create(ApiInterface.class);
-    }
-
-
-    /**
-     * Gets retrofit builder.
-     *
-     * @return object of Retrofit
-     */
-    static Retrofit getRetrofitBuilder() {
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient().build())
-                    .build();
-        }
-        return retrofit;
     }
 
     /**
