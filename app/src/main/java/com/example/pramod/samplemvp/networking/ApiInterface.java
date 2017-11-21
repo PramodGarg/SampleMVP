@@ -1,4 +1,4 @@
-package com.example.pramod.samplemvp.retrofit;
+package com.example.pramod.samplemvp.networking;
 
 import com.example.pramod.samplemvp.data.model.Post;
 
@@ -14,6 +14,11 @@ import retrofit2.http.GET;
 public interface ApiInterface {
     String GET_POSTS = "posts";
 
+    /**
+     * get posts lists from api
+     *
+     * @return : list of posts
+     */
     @GET(GET_POSTS)
     Call<ArrayList<Post>> fetchPosts();
 

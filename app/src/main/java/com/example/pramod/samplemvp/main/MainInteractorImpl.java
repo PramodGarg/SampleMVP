@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.example.pramod.samplemvp.data.model.Post;
 import com.example.pramod.samplemvp.data.source.PostSource;
-import com.example.pramod.samplemvp.retrofit.ApiInterface;
+import com.example.pramod.samplemvp.networking.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class MainInteractorImpl implements MainInteractor {
     }
 
     @Override
-    public void fetchPosts(final MainContract.Presenter.OnPostFetchCallback callback) {
+    public void fetchPosts(final MainInteractor.OnPostFetchCallback callback) {
         mApiInterface.fetchPosts().enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, @NonNull Response<ArrayList<Post>> response) {

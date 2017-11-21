@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.pramod.samplemvp.MyApplication;
 import com.example.pramod.samplemvp.R;
 import com.example.pramod.samplemvp.main.MainActivity;
 
@@ -35,12 +36,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     private void init() {
-        mPresenter = new LoginPresenterImpl(this);
+        mPresenter = new LoginPresenterImpl(this, MyApplication.getUserSource());
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mBtLogin = (Button) findViewById(R.id.btLogin);
-        mEtEmail = (EditText) findViewById(R.id.etEmail);
-        mEtPassword = (EditText) findViewById(R.id.etPassword);
+        mProgressBar = findViewById(R.id.progressBar);
+        mBtLogin = findViewById(R.id.btLogin);
+        mEtEmail = findViewById(R.id.etEmail);
+        mEtPassword = findViewById(R.id.etPassword);
     }
 
     private void setListeners() {
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btLogin:
-                mPresenter.login(mEtEmail.getText().toString().trim(),
+                mPresenter.onLogin(mEtEmail.getText().toString().trim(),
                         mEtPassword.getText().toString().trim());
                 break;
             default:
@@ -60,22 +61,22 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showEmailError() {
-        Toast.makeText(this, R.string.error_invalid_email, Toast.LENGTH_SHORT).show();
+    public void showInvalidEmailError(int resId) {
+        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showPasswordError() {
-        Toast.makeText(this, R.string.error_invalid_password, Toast.LENGTH_SHORT).show();
+    public void showInvalidPasswordError(int resId) {
+        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showInvalidCombinationError() {
-        Toast.makeText(this, R.string.error_invalid_email_password_combination, Toast.LENGTH_SHORT).show();
+    public void showInvalidCombinationError(int resId) {
+        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void navigateToMainActivity() {
+    public void navigateToMainScreen() {
         startActivity(new Intent(this, MainActivity.class));
     }
 

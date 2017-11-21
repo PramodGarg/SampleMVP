@@ -2,7 +2,8 @@ package com.example.pramod.samplemvp.main;
 
 import com.example.pramod.samplemvp.MyApplication;
 import com.example.pramod.samplemvp.data.model.Post;
-import com.example.pramod.samplemvp.retrofit.RestClient;
+import com.example.pramod.samplemvp.data.source.PostSource;
+import com.example.pramod.samplemvp.networking.RestClient;
 
 import java.util.List;
 
@@ -10,17 +11,17 @@ import java.util.List;
  * Created by pramod on 12/10/17.
  */
 
-public class MainPresenterImpl implements MainContract.Presenter, MainContract.Presenter.OnPostFetchCallback {
+public class MainPresenterImpl implements MainPresenter, MainInteractor.OnPostFetchCallback {
     private MainInteractor mainInteractor;
-    private MainContract.View mView;
+    private MainView mView;
 
-    MainPresenterImpl(MainContract.View view) {
-        mainInteractor = new MainInteractorImpl(RestClient.getApiInterface(), MyApplication.getPostSource());
+    MainPresenterImpl(MainView view, PostSource postSource) {
+        mainInteractor = new MainInteractorImpl(RestClient.getApiInterface(),postSource );
         mView = view;
     }
 
     @Override
-    public void fetchUsers() {
+    public void onFetchUsers() {
         mView.showProgress();
         mainInteractor.fetchPosts(this);
     }
@@ -35,6 +36,6 @@ public class MainPresenterImpl implements MainContract.Presenter, MainContract.P
     public void onFailure(String error) {
         mView.showNetworkError(error);
         mView.hideProgress();
-        mView.showNoUserLabel();
+        mView.showNoPostLabel();
     }
 }

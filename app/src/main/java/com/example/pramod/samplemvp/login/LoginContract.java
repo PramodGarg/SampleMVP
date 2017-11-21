@@ -9,27 +9,55 @@ import com.example.pramod.samplemvp.base.BaseView;
 
 public interface LoginContract {
     interface View extends BaseView {
-        void showEmailError();
+        /**
+         * show error if invalid email
+         */
+        void showInvalidEmailError(int resId);
 
-        void showPasswordError();
+        /**
+         * show error if invalid password
+         */
+        void showInvalidPasswordError(int resId);
 
-        void showInvalidCombinationError();
+        /**
+         * show error if invalid email/password combination
+         */
+        void showInvalidCombinationError(int resId);
 
-        void navigateToMainActivity();
+        /**
+         * navigate to main screen
+         */
+        void navigateToMainScreen();
 
     }
 
     interface Presenter extends BasePresenter {
-        void login(String email, String password);
+        /**
+         * user login
+         *
+         * @param email    : email of user
+         * @param password : password of user
+         */
+        void onLogin(String email, String password);
+    }
 
+    interface LoginInteractor {
+
+        void loginUser(String email, String password, OnLoginCallBack onLoginCallBack);
+
+        /**
+         * callback for login api
+         */
         interface OnLoginCallBack {
 
-            void onEmailError();
-
-            void onPasswordError();
-
+            /**
+             * if login succeed
+             */
             void onSuccess();
 
+            /**
+             * if login fails
+             */
             void onFailure();
         }
     }

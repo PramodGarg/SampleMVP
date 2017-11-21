@@ -2,7 +2,7 @@ package com.example.pramod.samplemvp.main;
 
 import com.example.pramod.samplemvp.MyApplication;
 import com.example.pramod.samplemvp.data.model.Post;
-import com.example.pramod.samplemvp.retrofit.ApiInterface;
+import com.example.pramod.samplemvp.networking.ApiInterface;
 import com.example.pramod.samplemvp.util.FileUtils;
 import com.example.pramod.samplemvp.util.SynchronousExecutorService;
 

@@ -12,7 +12,7 @@ import io.paperdb.Paper;
  */
 
 public class PostRepository implements PostSource, DatabaseConstant {
-    
+
     @Override
     public void savePostList(final List<Post> postList) {
         Paper.book().write(PAPER_POSTS_LIST, postList);

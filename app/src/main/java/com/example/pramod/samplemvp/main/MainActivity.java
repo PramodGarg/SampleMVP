@@ -11,9 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pramod.samplemvp.MyApplication;
 import com.example.pramod.samplemvp.R;
-import com.example.pramod.samplemvp.main.adapter.PostAdapter;
 import com.example.pramod.samplemvp.data.model.Post;
+import com.example.pramod.samplemvp.main.adapter.PostAdapter;
 
 import java.util.List;
 
@@ -21,8 +22,8 @@ import java.util.List;
  * Created by pramod on 12/10/17.
  */
 
-public class MainActivity extends AppCompatActivity implements MainContract.View, View.OnClickListener {
-    private MainContract.Presenter mPresenter;
+public class MainActivity extends AppCompatActivity implements MainView, View.OnClickListener {
+    private MainPresenter mPresenter;
 
     private Button mBtFetchUsers;
     private ProgressBar mProgressBar;
@@ -33,17 +34,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPresenter = new MainPresenterImpl(this);
+        mPresenter = new MainPresenterImpl(this, MyApplication.getPostSource());
         init();
         setListeners();
     }
 
 
     private void init() {
-        mBtFetchUsers = (Button) findViewById(R.id.btFetchUsers);
-        mRvUsers = (RecyclerView) findViewById(R.id.rvUsers);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mTvNoUsers = (TextView) findViewById(R.id.tvNoUsers);
+        mBtFetchUsers = findViewById(R.id.btFetchUsers);
+        mRvUsers = findViewById(R.id.rvUsers);
+        mProgressBar = findViewById(R.id.progressBar);
+        mTvNoUsers = findViewById(R.id.tvNoUsers);
 
         mRvUsers.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btFetchUsers:
-                mPresenter.fetchUsers();
+                mPresenter.onFetchUsers();
                 break;
             default:
                 break;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void showNoUserLabel() {
+    public void showNoPostLabel() {
         mTvNoUsers.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
         mRvUsers.setVisibility(View.GONE);

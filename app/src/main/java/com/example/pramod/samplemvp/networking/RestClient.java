@@ -1,4 +1,4 @@
-package com.example.pramod.samplemvp.retrofit;
+package com.example.pramod.samplemvp.networking;
 
 import com.example.pramod.samplemvp.BuildConfig;
 

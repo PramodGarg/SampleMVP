@@ -24,7 +24,7 @@ public class LoginInteractorTest {
     @Test
     public void loginApi_invalidEmail_callsOnEmailError() {
 
-        mLoginInteractor.loginApi("", "", mOnLoginCallBack);
+        mLoginInteractor.loginUser("", "", mOnLoginCallBack);
         Mockito.verify(mOnLoginCallBack, Mockito.times(1)).onEmailError();
         Mockito.verify(mOnLoginCallBack, Mockito.never()).onPasswordError();
         Mockito.verify(mOnLoginCallBack, Mockito.never()).onFailure();
@@ -34,7 +34,7 @@ public class LoginInteractorTest {
     @Test
     public void loginApi_invalidPassword_callsOnPasswordError() {
 
-        mLoginInteractor.loginApi("email@gmail.com", "", mOnLoginCallBack);
+        mLoginInteractor.loginUser("email@gmail.com", "", mOnLoginCallBack);
 
         Mockito.verify(mOnLoginCallBack, Mockito.times(1)).onPasswordError();
         Mockito.verify(mOnLoginCallBack, Mockito.never()).onEmailError();
@@ -45,7 +45,7 @@ public class LoginInteractorTest {
     @Test
     public void loginApi_valid_UnAuthenticated_EmailPassword_callsOnFailure() {
 
-        mLoginInteractor.loginApi("email@gmail.com", "password1", mOnLoginCallBack);
+        mLoginInteractor.loginUser("email@gmail.com", "password1", mOnLoginCallBack);
 
         Mockito.verify(mOnLoginCallBack, Mockito.times(1)).onFailure();
         Mockito.verify(mOnLoginCallBack, Mockito.never()).onEmailError();
@@ -56,7 +56,7 @@ public class LoginInteractorTest {
     @Test
     public void loginApi_valid_Authenticated_EmailPassword_callsOnSuccess() {
 
-        mLoginInteractor.loginApi("email@gmail.com", "password", mOnLoginCallBack);
+        mLoginInteractor.loginUser("email@gmail.com", "password", mOnLoginCallBack);
 
         Mockito.verify(mOnLoginCallBack, Mockito.times(1)).onSuccess();
         Mockito.verify(mOnLoginCallBack, Mockito.never()).onEmailError();

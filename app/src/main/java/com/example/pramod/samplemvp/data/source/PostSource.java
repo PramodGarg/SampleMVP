@@ -10,5 +10,10 @@ import java.util.List;
 
 public interface PostSource {
 
+    /**
+     * saves post list to local database
+     *
+     * @param postList : list of posts
+     */
     void savePostList(List<Post> postList);
 }

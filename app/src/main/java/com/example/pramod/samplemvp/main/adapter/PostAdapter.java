@@ -48,7 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostVH> {
     class PostVH extends RecyclerView.ViewHolder {
         private TextView mTvId, mTvUserId, mTvTitle, mTvBody;
 
-        public PostVH(View itemView) {
+        PostVH(View itemView) {
             super(itemView);
             mTvId = itemView.findViewById(R.id.tvId);
             mTvUserId = itemView.findViewById(R.id.tvUserId);

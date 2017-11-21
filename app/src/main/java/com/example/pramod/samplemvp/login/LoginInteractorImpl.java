@@ -1,34 +1,32 @@
 package com.example.pramod.samplemvp.login;
 
 
-public class LoginInteractorImpl implements LoginInteractor {
+import com.example.pramod.samplemvp.data.source.UserSource;
+
+public class LoginInteractorImpl implements LoginContract.LoginInteractor {
+    private UserSource mUserSource;
+
+    LoginInteractorImpl(final UserSource userSource) {
+        mUserSource = userSource;
+    }
+
     /**
-     * mocks server calls
+     * mocks user login
      *
      * @param email           : mail
      * @param password        : password
      * @param onLoginCallBack :onSuccess/fail callback
      */
     @Override
-    public void loginApi(final String email, final String password, final LoginContract.Presenter.OnLoginCallBack onLoginCallBack) {
-        //   new Handler().postDelayed(new Runnable() {
-        //      @Override
-        //  public void run () {
-        if (email == null || email.isEmpty()) {
-            onLoginCallBack.onEmailError();
-            return;
-        }
-        if (password == null || password.isEmpty()) {
-            onLoginCallBack.onPasswordError();
-            return;
-        }
+    public void loginUser(final String email, final String password,
+                          final LoginContract.LoginInteractor.OnLoginCallBack onLoginCallBack) {
+
         if (email.equals("email@gmail.com") && password.equals("password")) {
+            String accessToken = "dummyAccessToken";
+            mUserSource.saveAccessToken(accessToken);
             onLoginCallBack.onSuccess();
         } else {
             onLoginCallBack.onFailure();
         }
-
     }
-    //  }, 1500);
-//}
 }

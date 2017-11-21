@@ -6,8 +6,14 @@ package com.example.pramod.samplemvp.base;
 
 public interface BaseView {
 
+    /**
+     * displays progress view
+     */
     void showProgress();
-
+    
+    /**
+     * hide progress view
+     */
     void hideProgress();
 
 }
