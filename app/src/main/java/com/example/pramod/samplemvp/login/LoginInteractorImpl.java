@@ -1,13 +1,9 @@
 package com.example.pramod.samplemvp.login;
 
 
-import com.example.pramod.samplemvp.data.source.UserSource;
-
 public class LoginInteractorImpl implements LoginContract.LoginInteractor {
-    private UserSource mUserSource;
 
-    LoginInteractorImpl(final UserSource userSource) {
-        mUserSource = userSource;
+    LoginInteractorImpl() {
     }
 
     /**
@@ -23,8 +19,7 @@ public class LoginInteractorImpl implements LoginContract.LoginInteractor {
 
         if (email.equals("email@gmail.com") && password.equals("password")) {
             String accessToken = "dummyAccessToken";
-            mUserSource.saveAccessToken(accessToken);
-            onLoginCallBack.onSuccess();
+            onLoginCallBack.onSuccess(accessToken);
         } else {
             onLoginCallBack.onFailure();
         }

@@ -53,7 +53,7 @@ public interface LoginContract {
             /**
              * if login succeed
              */
-            void onSuccess();
+            void onSuccess(String accessToken);
 
             /**
              * if login fails

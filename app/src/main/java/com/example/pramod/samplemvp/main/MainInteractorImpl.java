@@ -19,11 +19,9 @@ import retrofit2.Response;
 
 public class MainInteractorImpl implements MainInteractor {
     private ApiInterface mApiInterface;
-    private PostSource mPostSource;
 
-    MainInteractorImpl(final ApiInterface apiInterface, final PostSource postSource) {
+    MainInteractorImpl(final ApiInterface apiInterface) {
         mApiInterface = apiInterface;
-        mPostSource = postSource;
     }
 
     @Override
@@ -32,9 +30,6 @@ public class MainInteractorImpl implements MainInteractor {
             @Override
             public void onResponse(Call<ArrayList<Post>> call, @NonNull Response<ArrayList<Post>> response) {
                 List<Post> postList = response.body();
-                if (postList != null) {
-                    mPostSource.savePostList(postList);
-                }
                 callback.onSuccess(postList);
             }
 

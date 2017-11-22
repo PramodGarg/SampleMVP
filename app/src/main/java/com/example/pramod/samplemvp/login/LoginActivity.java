@@ -32,12 +32,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         init();
         setListeners();
-
     }
 
     private void init() {
         mPresenter = new LoginPresenterImpl(this, MyApplication.getUserSource());
-
         mProgressBar = findViewById(R.id.progressBar);
         mBtLogin = findViewById(R.id.btLogin);
         mEtEmail = findViewById(R.id.etEmail);

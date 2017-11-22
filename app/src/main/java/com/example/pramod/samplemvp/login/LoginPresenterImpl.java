@@ -10,11 +10,13 @@ import com.example.pramod.samplemvp.data.source.UserSource;
 public class LoginPresenterImpl implements LoginContract.Presenter, LoginContract.LoginInteractor.OnLoginCallBack {
 
     private LoginContract.View mView;
-    private LoginContract.LoginInteractor mMainInteractor;
+    private LoginContract.LoginInteractor mLoginInteractor;
+    private UserSource mUserSource;
 
     LoginPresenterImpl(LoginContract.View view, UserSource userSource) {
         mView = view;
-        this.mMainInteractor = new LoginInteractorImpl(userSource);
+        mLoginInteractor = new LoginInteractorImpl();
+        mUserSource = userSource;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter, LoginContrac
 
         if (checkValidation(email, password)) {
             mView.showProgress();
-            mMainInteractor.loginUser(email, password, this);
+            mLoginInteractor.loginUser(email, password, this);
         }
     }
 
@@ -34,10 +36,10 @@ public class LoginPresenterImpl implements LoginContract.Presenter, LoginContrac
      * @return : true if validated else false
      */
     private boolean checkValidation(final String email, final String password) {
-        if (email == null || email.isEmpty()) {
+        if (email.isEmpty()) {
             mView.showInvalidEmailError(R.string.error_invalid_email);
             return false;
-        } else if (password == null || password.isEmpty()) {
+        } else if (password.isEmpty()) {
             mView.showInvalidPasswordError(R.string.error_invalid_password);
             return false;
         }
@@ -46,8 +48,8 @@ public class LoginPresenterImpl implements LoginContract.Presenter, LoginContrac
 
 
     @Override
-    public void onSuccess() {
-
+    public void onSuccess(String accessToken) {
+        mUserSource.saveAccessToken(accessToken);
         mView.hideProgress();
         mView.navigateToMainScreen();
     }
